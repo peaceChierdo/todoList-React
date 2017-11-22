@@ -15,7 +15,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
-  "homepage": " https://peacechierdo.github.io/todoList-React/todolist/build/",
+  "homepage": " https://peacechierdo.github.io/todoList-React/todolist",
   "devDependencies": {
     "gh-pages": "^1.1.0"
   }
