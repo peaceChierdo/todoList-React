@@ -14,7 +14,9 @@
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
-
   },
-   "homepage": " https://peacechierdo.github.io/todoList-React/build/"
+  "homepage": " https://peacechierdo.github.io/todoList-React/todolist/build/",
+  "devDependencies": {
+    "gh-pages": "^1.1.0"
+  }
 }
