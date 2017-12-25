@@ -1,7 +1,7 @@
 import AV from 'leancloud-storage'
 
-var APP_ID = 'StFqMbeakspjFzQxnIAWW04L-gzGzoHsz';
-var APP_KEY = 'SepvOj2sh0RGANgUb4ApKkzb';
+var APP_ID = 'NiQ9VB26EbUIz44aRlbzE55B-gzGzoHsz';
+var APP_KEY = 'svHnhS7kUGxSEtABBEEaOfIG';
 
 AV.init({
   appId: APP_ID,
@@ -44,7 +44,7 @@ export const TodoModel = {
 		})
 	},
 	update({id, title, status,deleted}, successFn, errorFn){
-		let todo = AV.Object.createWithoutData('todo', id)
+		let todo = AV.Object.createWithoutData('Todo', id)
 		title !== undefined && todo.set('title', title)
 		status !== undefined && todo.set('status', status)
 		deleted !== undefined && todo.set('deleted', deleted)
@@ -71,11 +71,14 @@ export function signUp(email, username, password, successFn, errorFn){
 	return undefined
 }
 
-function getUserFromAVUser(AVUser){
-	return {
-		id: AVUser.id,
-		...AVUser.attributes
-	}
+export function signIn2(username, password, successFn, errorFn){
+	AV.User.logIn(username, password).then(function (loginedUser){
+		let user = getUserFromAVUser(loginedUser)
+		console.log('singnIn2')
+		successFn.call(null, user)
+	}, function(error){
+		errorFn.call(null, error)
+	})
 }
 
 export function getCurrentUser(){
@@ -87,19 +90,12 @@ export function getCurrentUser(){
 	}
 }
 
-export function signOut(){
+export function signOut1(){
 	AV.User.logOut()
 	return undefined
 }
 
-export function signIn(username, password, successFn, errorFn){
-	AV.User.logIn(username, password).then(function (loginedUser){
-		let user = getUserFromAVUser(loginedUser)
-		successFn.call(null, user)
-	}, function(error){
-		errorFn.call(null, error)
-	})
-}
+
 
 export function sendPasswordResetEmail(email, successFn, errorFn){
 	AV.User.requestPasswordReset(email).then(function(success){
@@ -107,4 +103,11 @@ export function sendPasswordResetEmail(email, successFn, errorFn){
 	},function(error){
 		errorFn.call(null, error)
 	})
+}
+
+function getUserFromAVUser(AVUser){
+	return {
+		id: AVUser.id,
+		...AVUser.attributes
+	}
 }

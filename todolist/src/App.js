@@ -5,7 +5,8 @@ import TodoItem from './TodoItem';
 import 'normalize.css';
 import './reset.css';
 import UserDialog from './UserDialog';
-import {getCurrentUser, signOut, TodoModel} from './leanCloud'
+import {getCurrentUser, signOut1, TodoModel} from './leanCloud'
+ 
 
 export default class App extends Component {
   constructor(props){
@@ -15,34 +16,38 @@ export default class App extends Component {
       newTodo: '',
       todoList: []
     }
-    let user = getCurrentUser()
-    if(user){
-      TodoModel.getByUser(user, (todos)=>{
-       let stateCopy = JSON.parse(JSON.stringify(this.state))
-       stateCopy.todoList = todos
-        this.setState(stateCopy)
-      })
-    }
+    // let user = getCurrentUser() 暴露隐私的罪魁祸首
+    // if(user){
+    //   TodoModel.getByUser(user, (todos)=>{
+    //     let stateCopy = JSON.parse(JSON.stringify(this.state))
+    //     stateCopy.todoList = todos
+    //     this.setState(stateCopy)
+    //   })
+    // }
   }
 
   render() {
     let todos = this.state.todoList
-    .filter((item)=> !item.deleted) //只展示没有被删除的todo
-    .map((item,index)=>{
-      return (
-        <li key={index}>
-          <TodoItem 
-          todo={item} 
-          onToggle={this.toggle.bind(this)}
-          onDelete={this.delete.bind(this)}/>
-        </li>
-      )
-    })
-
+                .filter((item)=> !item.deleted) //只展示没有被删除的todo
+                .map((item,index)=>{              
+                  return (
+                    <li key={index}>
+                      <TodoItem 
+                      todo={item} 
+                      onToggle={this.toggle.bind(this)}
+                      onDelete={this.delete.bind(this)}/>
+                    </li>
+                  )
+                })
+        
     return (
       <div className="App">
-        <h1>{this.state.user.username||'我'}的待办
-        {this.state.user.id?<button onClick={this.signOut.bind(this)}>登出</button>:null}
+        <h1>{this.state.user.username||'我'}的待办       
+        {this.state.user.id?
+          //待改!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+          <button className="btn btn-default pull-right out"onClick={this.signOut.bind(this)}>
+           <i className="iconfont">&#xe610;</i>
+          </button>:null}           
         </h1>
         <div className="inputWrapper">
           <TodoInput content={this.state.newTodo} 
@@ -63,13 +68,31 @@ export default class App extends Component {
     )
   }
 
-  addTodo(event){
+  toggle(e, todo){
+    let oldStatus = todo.status
+    todo.status = todo.status ==='completed' ?'' :'completed'
+
+    TodoModel.update(todo, ()=>{
+      this.setState(this.state)
+    }, (error)=>{
+      todo.status = oldStatus
+      this.setState(this.state)
+    })
+    
+  }
+  delete(e, todo){
+    TodoModel.destroy(todo.id, ()=>{
+      todo.deleted = true
+      this.setState(this.state)
+    })   
+  }
+  addTodo(event){     //onKeyPress->onSubmit->addTodo()  主要是改todoList
     let newTodo = {
       title: event.target.value,
       status: '',
       deleted: false
     }
-    TodoModel.create(newTodo, (id)=>{
+    TodoModel.create(newTodo, (id)=>{ //?
       newTodo.id = id
       this.state.todoList.push(newTodo)
       this.setState({
@@ -81,42 +104,36 @@ export default class App extends Component {
     })
     
   }
-  toggle(e, todo){
-    let oldStatus = todo.status
-    todo.status = todo.status ==='completed' ?'' :'completed'
-    TodoModel.update(todo, ()=>{
-      this.setState(this.state)
-    }, (error)=>{
-      todo.status = oldStatus
-      this.setState(this.state)
-    })
-    
-  }
-  delete(event, todo){
-    TodoModel.destroy(todo.id, ()=>{
-      todo.deleted = true
-      this.setState(this.state)
-    })   
-  }
-  changeTitle(event){
+  changeTitle(event){   //onChange->changeTitle()  对于TodoInput
     this.setState({
-      newTodo: event.target.value,
-      todoList: this.state.todoList //?
+      newTodo: event.target.value
+      // todoList: this.state.todoList //?删掉没影响
     })
     
   }  
   signOut(){
-    signOut()  //?
+    signOut1()  
     let stateCopy = JSON.parse(JSON.stringify(this.state))
     stateCopy.user = {}
     this.setState(stateCopy)
+    // this.state.user={}  可以
+    // this.setState(this.state)
   }
   onSignUpOrSignIn(user){
     let stateCopy= JSON.parse(JSON.stringify(this.state))
     stateCopy.user = user
     this.setState(stateCopy)
+    let users = getCurrentUser()
+    if (users) {
+      TodoModel.getByUser(users, (todos) => {
+        let stateCopy = JSON.parse(JSON.stringify(this.state))
+        stateCopy.todoList = todos
+        this.setState(stateCopy)
+      })
+    }
   }
 
 
 }
+
 

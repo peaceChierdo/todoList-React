@@ -1,0 +1,7 @@
+.TodoInput {
+	display: inline-block;
+	width: 95%;
+	padding: 2px;
+	padding-left: 0;
+	font-size: 1.2em;
+}

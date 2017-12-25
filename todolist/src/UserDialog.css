@@ -1,26 +1,158 @@
-.UserDialog-Wrapper{ 
-  /*全屏*/      position: fixed; top: 0; left: 0; bottom: 0; right: 0; 
-  /*内容居中*/  display: flex; justify-content: center; align-items: center;
-  background: hsla(0,0%,0%,0.40);
+ *{
+   box-sizing: border-box;
+ }
+ .UserDialog-Wrapper{ 
+  /*全屏*/      
+    position:fixed; 
+    top: 0; 
+    left: 0; 
+    bottom: 0;
+    right: 0; 
+  /*内容居中*/    
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    background-color: #E5AE4B;
+
 }
-.UserDialog{
-  border: 1px solid;
+.letter-wrapper{
+  display: flex;
   border-radius: 4px;
   min-width: 20em;
-  background: white;
-  border: 1px solid #aaa;
-  box-shadow: 0 0 1em hsla(0,0%,0%,0.35);
+/*  box-shadow: 0 0 1em hsla(0,0%,0%,0.35);*/
 }
-.UserDialog .signInOrSignUp > nav:first-child{ padding: 1em; margin-left: -2em;}
-.UserDialog .signInOrSignUp > nav:first-child label{ margin-left: 2em; cursor: pointer;}
-.UserDialog .signInOrSignUp > .panes { padding: 0 1em 1em; }
+.letter{
+  flex: 1;
+  text-align: center;
+  align-items: center;
+  display: flex;
+}
+.btn-wrapper {
+   margin: 0;
+}
+.cover-btn{
+  border-radius: 50%;
+  width: 4em;
+  height: 4em;
+  text-align: center;
+  background-color: #334431;
+  font-size: 1.5em;
+  font-weight: normal;
+  color: #fff;
+}
+.cover-btn:hover{
+  color: #F2CBBC;
+}
+.TandD{
+  font-size: 16em;
+  color: #E05038;
+  text-align: center;
+}
 
-.UserDialog .forgotPassword > h3 { padding: 1em; }
-.UserDialog .forgotPassword > form { padding: 0 1em 1em; }
 
-.UserDialog form>.row{ display: flex; padding: .3em 0; }
-.UserDialog form>.row>label:first-child{ width: 4em; }
-.UserDialog form>.row.actions{ padding-left: 4em; display: flex; align-items: center;}
-.UserDialog form>.row.actions button{ margin-right: .5em; }
+#T {
+ 
+}
+#signUp {
+ 
+}
+#D {
+ 
+}
+#signIn {
+    
+}
+.signInForm,
+.signUpForm,
+.forgotPassword {
+  padding: 2em;
+  position: relative;
+}
+.signInForm .close,
+.signUpForm .close {
+  position: absolute;
+  top: 1.5em;
+  right: 0;
+}
 
-.UserDialog button{font: inherit; padding: .2em;}
+.forgotPassword > h3 { padding: 1em; }
+.forgotPassword > form { padding: 0 1em 1em; }
+
+/*form>.row>label:first-child{ width: 4em; }*/
+
+form{
+
+}
+form h3{
+  color: #334431;
+}
+form .row{
+  margin-bottom: 1.2em; 
+  position: relative;
+}
+form>.row>input{
+  padding: .4em;
+  font-size: 1.1em;
+  border-radius: 5px;
+}
+form>.row>input:focus{
+  padding: .5em;
+}
+form>.row .email{
+  position: absolute;
+  font-size: 1.3em;
+  right: .25em;
+  top: .3em;
+
+}
+form>.row .user{
+  position: absolute;
+  font-size: 1.3em;
+  right: .2em;
+  top: .2em;
+ 
+}
+form>.row .unlock{
+  position: absolute;
+  font-size: 1.8em;
+  right: 0.05em;
+}
+form>.row .lock{
+  position: absolute;
+  font-size: 1.8em;
+  bottom: .05em;
+  right: 0;
+}
+.actions>.btn-default,
+.actions>.btn-block{
+  background-color: #334431;
+  color: #fff;
+  border: none;
+}
+.actions>.btn-link{
+  color: #334431;
+}
+
+
+
+
+@keyframes jump {  
+   0% {  
+       transform: translate(0px, 0px);  
+   }  
+   25%{
+       transform: translate(0px, -16px);       
+   }
+   50% {  
+       transform: translate(0px, 0px);  
+   }  
+   75%{
+       transform: translate(0px, -10px);      
+   }
+   100% {  
+       transform: translate(0px, 0px);  
+   }  
+}
+.cover-btn:hover {
+  animation: jump .7s 1;
+}
