@@ -4,13 +4,13 @@ import './TodoItem.css'
 export default class TodoItem extends Component{
 	constructor(props){
 		super(props)
-		let date = new Date()
-		let month = date.getMonth()+1
-		let day = date.getDate()
-		this.state={
-			month: month,
-			day: day			
-		}
+		// let date = new Date()
+		// let month = date.getMonth()+1
+		// let day = date.getDate()
+		// this.state={
+		// 	month: month,
+		// 	day: day			
+		// }
 	}
 	render(){
 		return (
@@ -25,7 +25,7 @@ export default class TodoItem extends Component{
 				<span className='title '>
 					{this.props.todo.title}
 				</span>
-				<span className="date">{this.state.month+'/'+this.state.day}</span>
+				<span className="date">{this.props.todo.month+'/'+this.props.todo.day}</span>
 				<button className="btn btn-default"onClick={this.delete.bind(this)}>
 					<i className="iconfont delete">&#xe677;</i>
 				</button>

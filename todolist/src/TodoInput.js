@@ -6,8 +6,8 @@ export default function (props) {
 		<div>
 		   <input type="text" value={props.content}
 			className="TodoInput"
-			placeholder="record your plans in here"
-			onChange={changeTitle.bind(null, props)}  //bind?
+			placeholder="要做什么？"
+			onChange={changeTitle.bind(null, props)}  //bind()
 			onKeyPress={submit.bind(null, props)} 
 		   />
 		   <i className="iconfont front-sticker">&#xe604;</i>
@@ -18,11 +18,8 @@ export default function (props) {
 
 function submit(props, e){
 	if(e.key === 'Enter') {
-		if(e.target.value.trim()!==''){//?为什么要trim
+		if(e.target.value.trim()!==''){//trim()
 			props.onSubmit(e)
-		}
-		else{
-			alert('what do you want to do?')
 		}
 	}
 }

@@ -10,11 +10,13 @@ import {getCurrentUser, signOut1, TodoModel} from './leanCloud'
 
 export default class App extends Component {
   constructor(props){
-    super(props)
+    super(props)  
     this.state = {
       user: getCurrentUser || {},
       newTodo: '',
-      todoList: []
+      todoList: [],
+      // month: month,
+      // day: day
     }
     // let user = getCurrentUser() 暴露隐私的罪魁祸首
     // if(user){
@@ -44,7 +46,6 @@ export default class App extends Component {
       <div className="App">
         <h1>{this.state.user.username||'我'}的待办       
         {this.state.user.id?
-          //待改!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
           <button className="btn btn-default pull-right out"onClick={this.signOut.bind(this)}>
            <i className="iconfont">&#xe610;</i>
           </button>:null}           
@@ -86,11 +87,26 @@ export default class App extends Component {
       this.setState(this.state)
     })   
   }
-  addTodo(event){     //onKeyPress->onSubmit->addTodo()  主要是改todoList
+  addTodo(event){     //onKeyPress->onSubmit->addTodo()  
+    let date = new Date()
+    let month = date.getMonth()+1
+    let day = date.getDate()  
+    // this.state={
+    //   month: month,
+    //   day: day      
+    // }
+    // this.setState({
+    //   month: month,
+    //   day: day       
+    // })
     let newTodo = {
       title: event.target.value,
       status: '',
-      deleted: false
+      deleted: false,
+      // month: this.state.month,
+      // day: this.state.day
+      month: month,
+      day: day
     }
     TodoModel.create(newTodo, (id)=>{ //?
       newTodo.id = id

@@ -23,12 +23,14 @@ export const TodoModel = {
 			errorFn && errorFn.call(null, error)
 		})
 	},
-	create({status, title, deleted}, successFn, errorFn){
+	create({status, title, deleted, month, day}, successFn, errorFn){
 		let Todo = AV.Object.extend('Todo')
 		let todo = new Todo()
 		todo.set('title', title)
 		todo.set('status', status)
 		todo.set('deleted', deleted)
+		todo.set('month', month)
+		todo.set('day', day)
 
 		let acl = new AV.ACL()
 		acl.setPublicReadAccess(false)
