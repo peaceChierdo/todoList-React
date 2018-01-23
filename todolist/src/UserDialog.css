@@ -28,7 +28,10 @@
   display: flex;
 }
 .btn-wrapper {
-   margin: 0;
+   margin: .5em;
+}
+#signUp> .btn-wrapper {
+  margin: 0;
 }
 .cover-btn{
   border-radius: 50%;
@@ -37,11 +40,14 @@
   text-align: center;
   background-color: #334431;
   font-size: 1.5em;
-  font-weight: normal;
   color: #fff;
+  -webkit-box-shadow: 0px 0px 4px 1px rgba(51,68,49,0.65);
+  -moz-box-shadow: 0px 0px 4px 1px rgba(51,68,49,0.65);
+  box-shadow: 0px 0px 4px 1px rgba(51,68,49,0.65);
 }
 .cover-btn:hover{
-  color: #F2CBBC;
+  /*color: #F2CBBC;*/
+  color: #E5AE4B;
 }
 .TandD{
   font-size: 16em;

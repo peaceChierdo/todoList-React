@@ -33,14 +33,13 @@ button{
 .App > .todoList > li:nth-child(4n) {
   background: #9CA98D;
 }
-
 @font-face {
   font-family: 'iconfont';  /* project id 514655 */
-  src: url('//at.alicdn.com/t/font_514655_r6lrw2ilou3rqkt9.eot');
-  src: url('//at.alicdn.com/t/font_514655_r6lrw2ilou3rqkt9.eot?#iefix') format('embedded-opentype'),
-  url('//at.alicdn.com/t/font_514655_r6lrw2ilou3rqkt9.woff') format('woff'),
-  url('//at.alicdn.com/t/font_514655_r6lrw2ilou3rqkt9.ttf') format('truetype'),
-  url('//at.alicdn.com/t/font_514655_r6lrw2ilou3rqkt9.svg#iconfont') format('svg');
+  src: url('//at.alicdn.com/t/font_514655_bvnue1921gkz9f6r.eot');
+  src: url('//at.alicdn.com/t/font_514655_bvnue1921gkz9f6r.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_514655_bvnue1921gkz9f6r.woff') format('woff'),
+  url('//at.alicdn.com/t/font_514655_bvnue1921gkz9f6r.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_514655_bvnue1921gkz9f6r.svg#iconfont') format('svg');
 }
 .iconfont{
   font-family:"iconfont" !important;
@@ -66,11 +65,18 @@ button{
   position: relative;
   text-content: center;
 }
-.front-sticker {
+.inputWrapper .front-sticker {
   position: absolute;
   font-size: 1.2em;
   left: .4em;
   top: .4em;
+}
+.inputWrapper .enter-tip {
+  position: absolute;
+  font-size: 1.3em;
+  right: .45em;
+  top: .35em;
+  opacity: .7;
 }
 .App .inputWrapper .TodoInput {
   font-size: 1.2em;
@@ -78,6 +84,7 @@ button{
   border-radius: 5px;
   padding: .3em;
   padding-left: 1.8em;
+  padding-right: 1.5em;
 }
 .TodoInput {
   display: inline-block;

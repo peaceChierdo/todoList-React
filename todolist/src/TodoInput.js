@@ -11,6 +11,7 @@ export default function (props) {
 			onKeyPress={submit.bind(null, props)} 
 		   />
 		   <i className="iconfont front-sticker">&#xe604;</i>
+		   <i className="iconfont enter-tip">&#xe6e3;</i>
 		</div>
 		)
 
