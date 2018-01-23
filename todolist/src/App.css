@@ -52,7 +52,8 @@ button{
  
 .App .out {
   padding: 0;
-  margin-top: -.4em;
+  margin-top: -.1em;
+  margin-right: .3em;
   border: transparent;
   background: transparent;
 }
@@ -88,6 +89,9 @@ button{
 .App .todoList .TodoItem{
   font-size: 1.1em;
 }
+/*.App .todoList{
+  max-width: 400px;
+}*/
 .App .todoList .TodoItem button{
   border: transparent;
   padding: 0;
