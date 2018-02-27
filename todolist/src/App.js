@@ -46,7 +46,7 @@ export default class App extends Component {
       <div className="App">
         <h1>{this.state.user.username||'我'}的待办       
         {this.state.user.id?
-          <button className="btn btn-default pull-right out"onClick={this.signOut.bind(this)}>
+          <button className="btn btn-default pull-right out clearfix"onClick={this.signOut.bind(this)}>
            <i className="iconfont">&#xe610;</i>
           </button>:null}           
         </h1>

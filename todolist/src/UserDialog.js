@@ -28,8 +28,15 @@ export default class UserDialog extends Component{
 		let error = (error)=>{
 			switch(error.code){
 				case 202: 
-					alert('用户名已被占用')
+					alert('用户名已经被占用')
 					break;
+			    case 203:
+			    	alert('电子邮箱地址已经被占用')
+			    	break;
+                case 125:
+                case 205:
+                    alert('无效的邮箱地址');
+                    break;
 				default: 
 					alert(error)
 					break;
@@ -49,9 +56,18 @@ export default class UserDialog extends Component{
 		}
 		let error = (error)=>{
 			switch(error.code){
-				case 210: 
-					alert('用户名与密码不匹配')
-					break;
+                case 210:
+                    alert('用户名与密码不匹配');
+                    break;
+                case 201:
+                    alert('密码不能为空');
+                    break;
+                case 124:
+                    alert('请求超时，请检查网络连接是否正常');
+                    break;
+                case 211:
+                    alert('找不到用户');
+                    break;
 				default: 
 					alert(error)
 					break;
