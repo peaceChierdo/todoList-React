@@ -74,15 +74,19 @@ button{
 .inputWrapper .front-sticker {
   position: absolute;
   font-size: 1.2em;
-  left: .4em;
-  top: .4em;
+  left: .45em;
+  top: .25em;
 }
 .inputWrapper .enter-tip {
   position: absolute;
   font-size: 1.3em;
   right: .45em;
-  top: .35em;
+  top: .25em;
   opacity: .7;
+}
+.inputWrapper .enter-tip:hover{
+  transform: scale(1.1);
+  cursor: pointer;
 }
 .App .inputWrapper .TodoInput {
   font-size: 1.2em;
@@ -113,6 +117,7 @@ button{
 .App .todoList .TodoItem button .delete {
   /*color: #D12425;*/
   font-size: 1.3em;
+  outline: none;
 }
 
 .App .todoList .TodoItem {

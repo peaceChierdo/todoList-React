@@ -46,7 +46,8 @@ export default class App extends Component {
       <div className="App">
         <h1>{this.state.user.username||'我'}的待办       
         {this.state.user.id?
-          <button className="btn btn-default pull-right out clearfix"onClick={this.signOut.bind(this)}>
+          <button className="btn btn-default pull-right out clearfix" 
+            onClick={this.signOut.bind(this)} title="注销">
            <i className="iconfont">&#xe610;</i>
           </button>:null}           
         </h1>
@@ -100,7 +101,7 @@ export default class App extends Component {
     //   day: day       
     // })
     let newTodo = {
-      title: event.target.value,
+      title: event.target.value || event.target.parentNode.children[0].value,
       status: '',
       deleted: false,
       // month: this.state.month,
